@@ -48,11 +48,11 @@
 $active_group = 'default';
 $active_record = TRUE;
 
-$db['default']['hostname'] = 'localhost';
-$db['default']['username'] = 'root';
-$db['default']['password'] = '';
-$db['default']['database'] = 'dev_monevdki';
-$db['default']['dbdriver'] = 'mysql';
+$db['default']['hostname'] = 'msyqlhost';
+$db['default']['username'] = getenv('MYSQL_USER');
+$db['default']['password'] = getenv('MYSQL_PASSWORD');
+$db['default']['database'] = getenv('MYSQL_DATABASE');
+$db['default']['dbdriver'] = 'mysqli';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = FALSE;
 $db['default']['db_debug'] = TRUE;
