@@ -47,6 +47,7 @@ EXPOSE 80
 
 # environment variables
 ENV ENVIRONMENT=production
+ENV MYSQL_HOST=mysqlhost
 ENV MYSQL_DATABASE=dev_monevdki
 ENV MYSQL_USER=monitor
 ENV MYSQL_PASSWORD=password
