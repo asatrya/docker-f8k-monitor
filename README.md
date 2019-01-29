@@ -22,9 +22,13 @@ Run MySQL server
 
 ```docker run --rm --name f8k-mysql -d asatrya/mysql:5.7```
 
-Run Apache-PHP websever
+Run Apache-PHP websever (without shared directory with host)
 
 ```docker run --rm --name f8k-monitor --link f8k-mysql:mysqlhost -p 81:80 -d asatrya/f8k-monitor:latest```
+
+Run Apache-PHP websever (with shared directory with host)
+
+```docker run --rm --name f8k-monitor --link f8k-mysql:mysqlhost -v ${PWD}:/var/www/f8k-monitor -p 81:80 -d asatrya/f8k-monitor:latest```
 
 ## Usage
 
