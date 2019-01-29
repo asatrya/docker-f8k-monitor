@@ -1,4 +1,4 @@
-FROM ubuntu:18.04
+FROM ubuntu:14.04
 
 RUN apt-get update
 
@@ -11,12 +11,15 @@ RUN apt-get install -y nano
 # php & extension
 ENV TZ=Asia/Jakarta
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
-RUN apt-get install -y php
-RUN apt-get install -y php-curl
-RUN apt-get install -y php-xml
+RUN apt-get install -y php5
+RUN apt-get install -y php5-curl
+RUN apt-get install -y php5-mysql
+RUN apt-get install -y libapache2-mod-php5
+RUN apt-get install -y php5-mcrypt
+RUN apt-get install -y php5-curl
 RUN apt-get install -y phpunit
-RUN apt-get install -y php-imagick
-RUN apt-get install -y php-mysql
+RUN apt-get install -y php5-imagick
+RUN apt-get install -y php5-cli
 
 # composer
 RUN cd ~
@@ -26,9 +29,10 @@ RUN php composer-setup.php --install-dir=/usr/local/bin --filename=composer
 # apache & modules
 RUN apt-get install -y apache2
 RUN a2enmod rewrite
+RUN php5enmod mcrypt
 
 # mysql client
-RUN apt-get install -y mysql-client-5.7
+RUN apt-get install -y mysql-client
 
 # copy files
 RUN mkdir /var/www/f8k-monitor
@@ -42,6 +46,7 @@ COPY docker/apache-php/000-default.conf /etc/apache2/sites-available/000-default
 EXPOSE 80
 
 # environment variables
+ENV ENVIRONMENT=production
 ENV MYSQL_DATABASE=dev_monevdki
 ENV MYSQL_USER=monitor
 ENV MYSQL_PASSWORD=password
