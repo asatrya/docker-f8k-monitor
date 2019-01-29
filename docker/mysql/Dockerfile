@@ -1,4 +1,4 @@
-FROM mysql:5.7
+FROM mysql:5.6
 
 ENV MYSQL_DATABASE=dev_monevdki
 ENV MYSQL_USER=monitor
@@ -9,4 +9,3 @@ RUN apt-get update
 RUN apt-get install -y nano
 
 COPY *.sql /docker-entrypoint-initdb.d/
-COPY *.cnf /etc/mysql/conf.d/
